@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GoF · Clientes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <span class="brand-logo">🧩</span>
+            <div>
+                <h1>GoF · Spring Framework</h1>
+                <p>Gestão de clientes com consulta de endereço por CEP</p>
+            </div>
+        </div>
+        <a class="btn-ghost" href="/swagger-ui.html" target="_blank" rel="noopener">API Docs ↗</a>
+    </header>
+
+    <main class="container">
+        <!-- Formulário -->
+        <section class="card form-card">
+            <h2 id="form-title">Novo cliente</h2>
+            <form id="cliente-form" autocomplete="off">
+                <input type="hidden" id="cliente-id" />
+
+                <div class="field">
+                    <label for="nome">Nome</label>
+                    <input type="text" id="nome" placeholder="Ex.: Gustavo Vianna" required />
+                </div>
+
+                <div class="field">
+                    <label for="cep">CEP</label>
+                    <div class="cep-row">
+                        <input type="text" id="cep" placeholder="Ex.: 01001000" maxlength="9" required />
+                        <span id="cep-status" class="cep-status"></span>
+                    </div>
+                </div>
+
+                <!-- Pré-visualização do endereço -->
+                <div id="endereco-preview" class="endereco-preview hidden">
+                    <span class="addr-icon">📍</span>
+                    <div id="endereco-texto"></div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary" id="btn-submit">Cadastrar</button>
+                    <button type="button" class="btn-secondary hidden" id="btn-cancel">Cancelar</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Lista -->
+        <section class="card list-card">
+            <div class="list-header">
+                <h2>Clientes</h2>
+                <span id="counter" class="counter">0</span>
+            </div>
+
+            <div class="table-wrap">
+                <table id="clientes-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nome</th>
+                            <th>Endereço</th>
+                            <th>Cidade/UF</th>
+                            <th class="col-actions">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="clientes-body"></tbody>
+                </table>
+            </div>
+
+            <div id="empty-state" class="empty-state hidden">
+                <span class="empty-icon">📭</span>
+                <p>Nenhum cliente cadastrado ainda.</p>
+            </div>
+        </section>
+    </main>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
